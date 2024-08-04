@@ -14,8 +14,8 @@ public partial class AppLogic
             {
                 this.OnEnter(() =>
                 {
-                    Output(new Output.ShowMainMenu());
                     Output(new Output.HideSplashScreen());
+                    Output(new Output.ShowMainMenu());
                 });
             }
 
