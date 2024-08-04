@@ -8,25 +8,29 @@ namespace test.main_menu;
 [Meta(typeof(IAutoNode))]
 public partial class MainMenu : Control, IMainMenu
 {
-    #region Nodes
-    [Node] public IButton StartGameButton { get; set; } = default!;
-    #endregion
-
     #region Signals
-    [Signal] public delegate void NewGameEventHandler();
+    [Signal] public delegate void GameStartedEventHandler();
+    #endregion
+
+    #region Exports
+    [Export] public Button StartGameButton { get; set; } = default!;
     #endregion
 
 
-    public void OnReady()
+    public override void _Ready()
     {
-        StartGameButton.Pressed += OnStartGameButtonPressed;
-    }
-
-    public void OnExitTree()
-    {
-        StartGameButton.Pressed -= OnStartGameButtonPressed;
+        StartGameButton.Pressed += OnGameStartedButtonPressed;
     }
 
 
-    private void OnStartGameButtonPressed() => EmitSignal(SignalName.NewGame);
+    public override void _ExitTree()
+    {
+        StartGameButton.Pressed -= OnGameStartedButtonPressed;
+    }
+
+
+    private void OnGameStartedButtonPressed()
+    {
+        EmitSignal(SignalName.GameStarted);
+    }
 }

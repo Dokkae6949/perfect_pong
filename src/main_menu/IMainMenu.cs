@@ -4,5 +4,5 @@ namespace test.main_menu;
 
 public interface IMainMenu : IControl
 {
-    event MainMenu.NewGameEventHandler NewGame;
+    event MainMenu.GameStartedEventHandler GameStarted;
 }

@@ -50,6 +50,7 @@ public partial class App : CanvasLayer, IApp
         AppLogic.Set(AppRepo);
 
         SplashScreenAnimationPlayer.AnimationFinished += OnSplashScreenAnimationFinished;
+        MainMenu.GameStarted += OnGameStarted;
         
         this.Provide();
     }
@@ -71,6 +72,15 @@ public partial class App : CanvasLayer, IApp
             {
                 Game?.Hide();
                 MainMenu.Show();
+            })
+            .Handle((in AppLogic.Output.ShowGame _) =>
+            {
+                Game = Instantiator.Instantiate<Game>(GameScene);
+                AddChild((Game) Game);
+                
+                Game?.Show();
+                MainMenu.Hide();
+                SplashScreen.Hide();
             });
 
         AppLogic.Start();
@@ -79,11 +89,13 @@ public partial class App : CanvasLayer, IApp
     public void OnExitTree()
     {
         SplashScreenAnimationPlayer.AnimationFinished -= OnSplashScreenAnimationFinished;
+        MainMenu.GameStarted -= OnGameStarted;
     }
 
 
     private void FadeInSplashScreen()
     {
+        SplashScreen.Show();
         SplashScreenAnimationPlayer.Play(SplashScreenFadeInAnimationName);
     }
     
@@ -101,7 +113,13 @@ public partial class App : CanvasLayer, IApp
         } 
         else if (animationName == SplashScreenFadeOutAnimationName)
         {
+            SplashScreen.Hide();
             AppLogic.Input(new AppLogic.Input.SplashScreenFadedOut());
         } 
+    }
+    
+    private void OnGameStarted()
+    {
+        AppLogic.Input(new AppLogic.Input.LoadGame());
     }
 }
