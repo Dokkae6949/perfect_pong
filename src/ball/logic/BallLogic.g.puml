@@ -2,8 +2,8 @@
 state "BallLogic State" as test_ball_logic_BallLogic_State {
   state "Disabled" as test_ball_logic_BallLogic_State_Disabled
   state "Enabled" as test_ball_logic_BallLogic_State_Enabled {
-    state "Moving" as test_ball_logic_BallLogic_State_Moving
     state "Colliding" as test_ball_logic_BallLogic_State_Colliding
+    state "Moving" as test_ball_logic_BallLogic_State_Moving
   }
 }
 

@@ -1,6 +1,5 @@
 using Chickensoft.Introspection;
 using Chickensoft.LogicBlocks;
-using test.ball.logic;
 
 namespace test.app.logic;
 
@@ -13,7 +12,7 @@ public partial class AppLogic
         {
             public MainMenu()
             {
-                this.OnEnter(() => Output(new Output.ShowSplashScreen()));
+                this.OnEnter(() => Output(new Output.HideSplashScreen()));
             }
 
             public Transition On(in Input.LoadGame input) => To<InGame>();

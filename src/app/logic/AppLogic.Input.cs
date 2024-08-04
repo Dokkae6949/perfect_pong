@@ -6,7 +6,8 @@ public partial class AppLogic
 {
     public static class Input
     {
-        public readonly record struct SplashScreenFinished;
+        public readonly record struct SplashScreenFadedIn;
+        public readonly record struct SplashScreenFadedOut;
         public readonly record struct LoadGame;
         public readonly record struct EndGame(GameEndedAction Action);
     }

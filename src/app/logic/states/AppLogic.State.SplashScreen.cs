@@ -10,7 +10,7 @@ public partial class AppLogic
     public partial record State
     {
         [Meta, Id("app_logic_state_splash_screen")]
-        public partial record SplashScreen : State, IGet<Input.SplashScreenFinished>
+        public partial record SplashScreen : State, IGet<Input.SplashScreenFadedIn>
         {
             public SplashScreen()
             {
@@ -20,7 +20,7 @@ public partial class AppLogic
                 OnDetach(() => Get<IAppRepo>().SplashScreenSkipped -= OnSplashScreenSkipped);
             }
 
-            public Transition On(in Input.SplashScreenFinished input) => To<MainMenu>();
+            public Transition On(in Input.SplashScreenFadedIn input) => To<MainMenu>();
 
             private void OnSplashScreenSkipped() => Output(new Output.HideSplashScreen());
         }
