@@ -4,7 +4,7 @@ using test.game.data;
 
 namespace test.game;
 
-public interface IGame : INode, IProvide<IGameRepo>
+public interface IGame : INode2D, IProvide<IGameRepo>
 {
     
 }

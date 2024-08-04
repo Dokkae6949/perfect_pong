@@ -8,7 +8,7 @@ using test.game.logic;
 namespace test.game;
 
 [Meta(typeof(IAutoNode))]
-public partial class Game : Node, IGame
+public partial class Game : Node2D, IGame
 {
     public override void _Notification(int what) => this.Notify(what);
 

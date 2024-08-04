@@ -1,10 +1,12 @@
 using Chickensoft.AutoInject;
+using Chickensoft.GodotNodeInterfaces;
 using Chickensoft.Introspection;
 using Godot;
 using test.app.data;
 using test.app.logic;
 using test.common.utils.instantiator;
 using test.game;
+using test.main_menu;
 
 namespace test.app;
 
@@ -14,7 +16,8 @@ public partial class App : CanvasLayer, IApp
     public override void _Notification(int what) => this.Notify(what);
     
     #region MyRegion
-    public IGame Game { get; private set; } = default!;
+    public IGame? Game { get; set; }
+    public IMainMenu? MainMenu { get; set; }
     #endregion
 
     #region Provisions
@@ -22,11 +25,13 @@ public partial class App : CanvasLayer, IApp
     #endregion
     
     #region Nodes
-    [Node] public AnimationPlayer SplashScreenAnimationPlayer { get; set; } = default!;
+    [Node] public IControl SplashScreen { get; set; } = default!;
+    [Node] public IAnimationPlayer SplashScreenAnimationPlayer { get; set; } = default!;
     #endregion
     
     #region Exports
     [Export] public PackedScene GameScene { get; set; } = default!;
+    [Export] public PackedScene MainMenuScene { get; set; } = default!;
     [ExportGroup("AnimationNames")]
     [Export] public StringName SplashScreenFadeInAnimationName { get; set; } = default!;
     [Export] public StringName SplashScreenFadeOutAnimationName { get; set; } = default!;
@@ -62,6 +67,20 @@ public partial class App : CanvasLayer, IApp
             .Handle((in AppLogic.Output.HideSplashScreen _) =>
             {
                 FadeOutSplashScreen();
+            })
+            .Handle((in AppLogic.Output.ShowMainMenu _) =>
+            {
+                if (MainMenu == null)
+                {
+                    MainMenu = Instantiator.Instantiate<MainMenu>(MainMenuScene);
+                    AddChild((MainMenu)MainMenu);
+                    // This is a workaround for the issue where the input handling order is not correct:
+                    // https://forum.godotengine.org/t/change-input-handling-order-for-ui-elements/56601/5
+                    MoveChild((Control) SplashScreen, -1);
+                }
+                
+                Game?.Hide();
+                MainMenu?.Show();
             });
 
         AppLogic.Start();

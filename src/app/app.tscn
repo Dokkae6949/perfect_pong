@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx6o0xi8xl466"]
+[gd_scene load_steps=7 format=3 uid="uid://dx6o0xi8xl466"]
 
 [ext_resource type="Script" path="res://src/app/App.cs" id="1_escl6"]
 [ext_resource type="PackedScene" uid="uid://7y4obp0g7hea" path="res://scenes/game.tscn" id="2_4l5hd"]
+[ext_resource type="PackedScene" uid="uid://c1x7rn3tasgrv" path="res://src/main_menu/main_menu.tscn" id="3_vjdj6"]
 
 [sub_resource type="Animation" id="Animation_hae1s"]
 resource_name = "splash_screen_fade_in"
@@ -9,7 +10,7 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BlackScreen:color")
+tracks/0/path = NodePath("SplashScreen/BlackScreen:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Titel:modulate")
+tracks/1/path = NodePath("SplashScreen/Titel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -37,7 +38,7 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BlackScreen:color")
+tracks/0/path = NodePath("SplashScreen/BlackScreen:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,7 +50,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Titel:modulate")
+tracks/1/path = NodePath("SplashScreen/Titel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -68,16 +69,28 @@ _data = {
 [node name="App" type="CanvasLayer"]
 script = ExtResource("1_escl6")
 GameScene = ExtResource("2_4l5hd")
+MainMenuScene = ExtResource("3_vjdj6")
 SplashScreenFadeInAnimationName = &"splash_screen_fade_in"
 SplashScreenFadeOutAnimationName = &"splash_screen_fade_out"
 
-[node name="SplashScreenAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="SplashScreen" type="Control" parent="."]
 unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SplashScreenAnimationPlayer" type="AnimationPlayer" parent="SplashScreen"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_te113")
 }
 
-[node name="BlackScreen" type="ColorRect" parent="."]
+[node name="BlackScreen" type="ColorRect" parent="SplashScreen"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -85,16 +98,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Titel" type="Label" parent="."]
+[node name="Titel" type="Label" parent="SplashScreen"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -245.5
+offset_top = -55.0
+offset_right = 245.5
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80

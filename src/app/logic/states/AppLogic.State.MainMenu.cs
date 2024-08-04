@@ -12,7 +12,11 @@ public partial class AppLogic
         {
             public MainMenu()
             {
-                this.OnEnter(() => Output(new Output.HideSplashScreen()));
+                this.OnEnter(() =>
+                {
+                    Output(new Output.ShowMainMenu());
+                    Output(new Output.HideSplashScreen());
+                });
             }
 
             public Transition On(in Input.LoadGame input) => To<InGame>();

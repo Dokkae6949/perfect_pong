@@ -11,7 +11,7 @@ test_app_logic_AppLogic_State_SplashScreen --> test_app_logic_AppLogic_State_Mai
 
 test_app_logic_AppLogic_State_InGame : OnEnter → ShowGame
 test_app_logic_AppLogic_State_InGame : OnExit → HideGame
-test_app_logic_AppLogic_State_MainMenu : OnEnter → HideSplashScreen
+test_app_logic_AppLogic_State_MainMenu : OnEnter → HideSplashScreen, ShowMainMenu
 test_app_logic_AppLogic_State_SplashScreen : OnEnter → ShowSplashScreen
 test_app_logic_AppLogic_State_SplashScreen : OnSplashScreenSkipped() → HideSplashScreen
 
