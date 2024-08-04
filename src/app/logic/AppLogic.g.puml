@@ -1,0 +1,16 @@
+@startuml AppLogic
+state "AppLogic State" as test_app_logic_AppLogic_State {
+  state "SplashScreen" as test_app_logic_AppLogic_State_SplashScreen
+  state "MainMenu" as test_app_logic_AppLogic_State_MainMenu
+  state "InGame" as test_app_logic_AppLogic_State_InGame
+}
+
+test_app_logic_AppLogic_State_SplashScreen --> test_app_logic_AppLogic_State_MainMenu : SplashScreenFinished
+
+test_app_logic_AppLogic_State_InGame : OnEnter → ShowSplashScreen
+test_app_logic_AppLogic_State_MainMenu : OnEnter → ShowSplashScreen
+test_app_logic_AppLogic_State_SplashScreen : OnEnter → ShowSplashScreen
+test_app_logic_AppLogic_State_SplashScreen : OnSplashScreenSkipped() → HideSplashScreen
+
+[*] --> test_app_logic_AppLogic_State_SplashScreen
+@enduml

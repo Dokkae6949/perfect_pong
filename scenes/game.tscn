@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://7y4obp0g7hea"]
+
+[ext_resource type="Script" path="res://src/game/Game.cs" id="1_jpvlm"]
+[ext_resource type="PackedScene" uid="uid://d4bjxx71j380h" path="res://scenes/ball.tscn" id="1_yymw0"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_jpvlm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Ball" parent="." instance=ExtResource("1_yymw0")]
+unique_name_in_owner = true
+Velocity = Vector2(200, 120)

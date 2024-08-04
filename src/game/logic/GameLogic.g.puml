@@ -1,0 +1,11 @@
+@startuml GameLogic
+state "GameLogic State" as test_game_logic_GameLogic_State {
+  state "Running" as test_game_logic_GameLogic_State_Running
+}
+
+test_game_logic_GameLogic_State_Running --> test_game_logic_GameLogic_State_Running : EndGame
+
+test_game_logic_GameLogic_State_Running : OnEnter → StartGame
+
+[*] --> test_game_logic_GameLogic_State_Running
+@enduml

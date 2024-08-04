@@ -1,0 +1,22 @@
+@startuml BallLogic
+state "BallLogic State" as test_ball_logic_BallLogic_State {
+  state "Disabled" as test_ball_logic_BallLogic_State_Disabled
+  state "Enabled" as test_ball_logic_BallLogic_State_Enabled {
+    state "Moving" as test_ball_logic_BallLogic_State_Moving
+    state "Colliding" as test_ball_logic_BallLogic_State_Colliding
+  }
+}
+
+test_ball_logic_BallLogic_State_Colliding --> test_ball_logic_BallLogic_State_Moving : CollisionDone
+test_ball_logic_BallLogic_State_Disabled --> test_ball_logic_BallLogic_State_Moving : Enable
+test_ball_logic_BallLogic_State_Enabled --> test_ball_logic_BallLogic_State_Colliding : Collision
+test_ball_logic_BallLogic_State_Enabled --> test_ball_logic_BallLogic_State_Disabled : Disable
+test_ball_logic_BallLogic_State_Moving --> test_ball_logic_BallLogic_State_Moving : PhysicsTick
+
+test_ball_logic_BallLogic_State_Colliding : OnEnter → Colliding, PositionChanged, VelocityChanged
+test_ball_logic_BallLogic_State_Disabled : OnEnter → Disabled
+test_ball_logic_BallLogic_State_Enabled : OnEnter → Enabled
+test_ball_logic_BallLogic_State_Moving : OnPhysicsTick → PositionChanged
+
+[*] --> test_ball_logic_BallLogic_State_Disabled
+@enduml
