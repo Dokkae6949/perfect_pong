@@ -7,5 +7,5 @@ namespace test.game.logic;
 [LogicBlock(typeof(State), Diagram = true)]
 public partial class GameLogic : LogicBlock<GameLogic.State>, IGameLogic
 {
-    public override Transition GetInitialState() => To<State.Running>();
+    public override Transition GetInitialState() => To<State.Starting>();
 }

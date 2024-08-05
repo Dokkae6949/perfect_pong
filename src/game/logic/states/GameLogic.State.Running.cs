@@ -13,12 +13,6 @@ public partial class GameLogic
         {
             public Running()
             {
-                this.OnEnter(() =>
-                {
-                    Output(new Output.StartGame());
-                    Get<IGameRepo>().OnGameStarted();
-                });
-                
                 OnAttach(() => Get<IGameRepo>().GameEnded += OnGameEnded);
                 OnDetach(() => Get<IGameRepo>().GameEnded -= OnGameEnded);
             }

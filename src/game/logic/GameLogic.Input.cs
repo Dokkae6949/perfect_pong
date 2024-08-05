@@ -6,6 +6,7 @@ public partial class GameLogic
 {
     public static class Input
     {
+        public readonly record struct GameStarted;
         public readonly record struct EndGame(GameEndedReason reason);
     }
 }

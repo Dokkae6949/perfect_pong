@@ -7,5 +7,5 @@ namespace test.ball.logic;
 [LogicBlock(typeof(State), Diagram = true)]
 public partial class BallLogic : LogicBlock<BallLogic.State>, IBallLogic
 {
-    public override Transition GetInitialState() => To<State.Disabled>();
+    public override Transition GetInitialState() => To<State.Moving>();
 }

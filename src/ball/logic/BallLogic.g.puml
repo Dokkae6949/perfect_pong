@@ -18,5 +18,5 @@ test_ball_logic_BallLogic_State_Disabled : OnEnter → Disabled
 test_ball_logic_BallLogic_State_Enabled : OnEnter → Enabled
 test_ball_logic_BallLogic_State_Moving : OnPhysicsTick → PositionChanged
 
-[*] --> test_ball_logic_BallLogic_State_Disabled
+[*] --> test_ball_logic_BallLogic_State_Moving
 @enduml
