@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx6o0xi8xl466"]
+[gd_scene load_steps=8 format=3 uid="uid://dx6o0xi8xl466"]
 
 [ext_resource type="Script" path="res://src/app/App.cs" id="1_escl6"]
 [ext_resource type="PackedScene" uid="uid://7y4obp0g7hea" path="res://scenes/game.tscn" id="2_4l5hd"]
 [ext_resource type="PackedScene" uid="uid://c1x7rn3tasgrv" path="res://src/main_menu/main_menu.tscn" id="3_vjdj6"]
+[ext_resource type="Script" path="res://src/splash_screen/SplashScreen.cs" id="4_su4dp"]
 
 [sub_resource type="Animation" id="Animation_hae1s"]
 resource_name = "splash_screen_fade_in"
@@ -83,6 +84,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_su4dp")
 
 [node name="SplashScreenAnimationPlayer" type="AnimationPlayer" parent="SplashScreen"]
 unique_name_in_owner = true

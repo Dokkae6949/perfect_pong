@@ -22,7 +22,11 @@ public partial class AppLogic
 
             public Transition On(in Input.SplashScreenFadedIn input) => To<MainMenu>();
 
-            private void OnSplashScreenSkipped() => Output(new Output.HideSplashScreen());
+            private void OnSplashScreenSkipped()
+            {
+                Output(new Output.HideSplashScreen());
+                Input(new Input.SplashScreenFadedIn());
+            }
         }
     }
 }
